@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'Neutraface Bold';
+    src: url('/public/fonts/Neutraface Text Bold.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Neutraface Regular';
+    src: url('/public/fonts/Neutraface Text Book.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
