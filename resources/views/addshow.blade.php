@@ -51,7 +51,7 @@
                                     <form action="{{route('show.store')}}" method="POST" id="store_show" enctype="multipart/form-data">
                                 @endif
                                     @csrf
-                                    <div class="mt-4 border border-gray-300 p-4 rounded-lg">
+                                    <div class="mt-4  p-4 rounded-lg">
                                         <h1 class="mb-2"> Inserisci dati spettacolo:</h1>
                                         <div class="lg:flex">
                                             <div class="lg:w-1/2">

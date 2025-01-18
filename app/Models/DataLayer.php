@@ -52,12 +52,36 @@ class DataLayer extends Model
 
     public function getFutureEventList()
     {
-        //todo: not implemented yet
+        return Event::where('data', '>=', now()->toDateString()) // Filtra gli eventi futuri
+        ->orderBy('data', 'asc')    // Ordina per data crescente
+        ->get();
     }
 
     public function getPastEventList()
     {
-        //todo: not implemented yet
+        return Event::where('data', '<', now()->toDateString()) // Filtra gli eventi futuri
+        ->orderBy('data', 'asc')    // Ordina per data crescente
+        ->get();
+    }
+
+    public function getEventById($id)
+    {
+        return Event::find($id);
+    }
+
+    public function destroyEvent($event)
+    {
+        $event->delete();
+    }
+
+    public function storeEvent($place, $show_id, \DateTime $data, $hour)
+    {
+        $event = new Event();
+        $event->place = $place;
+        $event->show_id = $show_id;
+        $event->data = $data;
+        $event->hour = $hour;
+        $event->save();
     }
 
 

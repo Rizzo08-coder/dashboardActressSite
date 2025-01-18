@@ -6,7 +6,7 @@ function checkAddShow(){
         var directed_by = $("#directed_by")
         var collaboration = $("#collaboration")
         var image = $("#inputImage").val();
-        if(title.val()==="" || short_description==="" || description==="" || directed_by==="" || collaboration==="") {
+        if(title.val()==="" || short_description.val()==="" || description.val()==="" || directed_by.val()==="" || collaboration.val()==="") {
             $("#alert-empty-field").removeClass('hidden');
         } else if (image === ""){
             $("#alert-empty-image").removeClass('hidden');
@@ -27,7 +27,7 @@ function checkEditShow(){
         var directed_by = $("#directed_by")
         var collaboration = $("#collaboration")
         var image = $("#inputImage").val();
-        if(title.val()==="" || short_description==="" || description==="" || directed_by==="" || collaboration==="") {
+        if(title.val()==="" || short_description.val()==="" || description.val()==="" || directed_by.val()==="" || collaboration.val()==="") {
             $("#alert-empty-field").removeClass('hidden');
         } else{
             $("form[id='store_edit_show']").submit();

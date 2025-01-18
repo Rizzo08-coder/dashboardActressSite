@@ -25,7 +25,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/dashboard/show/edit/store/{id}',[ShowController::class, 'updateShow'])->name('show.update');
     Route::get('/dashboard/show/edit/{id}',[ShowController::class, 'editShow'])->name('show.edit');
     Route::get('/dashboard/show/edit/{id}/destroy', [ShowController::class, 'destroyShow'])->name('show.destroy');
+
     Route::get('/dashboard/event', [EventController::class, 'listEvent'])->name('event');
+    Route::get('/dashboard/event/edit/add', [EventController::class, 'addEvent'])->name('event.add');
+    Route::post('/dashboard/event/edit/store', [EventController::class, 'storeEvent'])->name('event.store');
+    Route::get('/dashboard/event/edit/{id}/destroy', [EventController::class, 'destroyEvent'])->name('event.destroy');
 });
 
 require __DIR__.'/auth.php';
