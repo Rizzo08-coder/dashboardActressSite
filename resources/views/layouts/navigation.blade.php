@@ -18,7 +18,7 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('show')" :active="request()->routeIs('show') || request()->routeIs('singleshow.show')">
+                    <x-nav-link :href="route('show')" :active="request()->routeIs('show') || request()->routeIs('singleshow.show') || request()->routeIs('show.add') || request()->routeIs('show.edit')">
                         Spettacoli
                     </x-nav-link>
                 </div>
@@ -84,7 +84,7 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('show')" :active="request()->routeIs('show') || request()->routeIs('singleshow.show')">
+            <x-responsive-nav-link :href="route('show')" :active="request()->routeIs('show') || request()->routeIs('singleshow.show') || request()->routeIs('show.add') || request()->routeIs('show.edit')">
                 Spettacoli
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('event')" :active="request()->routeIs('event')">

@@ -54,14 +54,9 @@
                                 {{$show->collaboration}}
                             </p>
 
-                            <h2 class="mt-6 text-xl font-semibold text-gray-700">Data creazione</h2>
-                            <p class="text-gray-600 mt-2">
-                                02/11/2018
-                            </p>
-
                             <div class="">
                                 <div class="mt-6">
-                                    <a href="#" class="inline-block max-lg:w-full text-center  text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium  text-sm px-5 py-2.5 mr-2 mb-2">
+                                    <a href="{{route('show.edit', ['id' => $show->id])}}" class="inline-block max-lg:w-full text-center  text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium  text-sm px-5 py-2.5 mr-2 mb-2">
                                         Modifica
                                     </a>
 

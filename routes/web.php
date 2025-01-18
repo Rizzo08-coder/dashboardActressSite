@@ -22,6 +22,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard/show/{name}', [ShowController::class, 'show'])->name('singleshow.show');
     Route::get('/dashboard/show/edit/add', [ShowController::class,'addShow'])->name('show.add');
     Route::post('/dashboard/show/edit/store', [ShowController::class, 'storeShow'])->name('show.store');
+    Route::post('/dashboard/show/edit/store/{id}',[ShowController::class, 'updateShow'])->name('show.update');
+    Route::get('/dashboard/show/edit/{id}',[ShowController::class, 'editShow'])->name('show.edit');
     Route::get('/dashboard/show/edit/{id}/destroy', [ShowController::class, 'destroyShow'])->name('show.destroy');
     Route::get('/dashboard/event', [EventController::class, 'listEvent'])->name('event');
 });

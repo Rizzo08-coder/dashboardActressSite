@@ -19,6 +19,22 @@ function checkAddShow(){
     });
 }
 
+function checkEditShow(){
+    $(document).ready(function () {
+        var title = $("#title");
+        var short_description = $("#short_description");
+        var description = $("#description")
+        var directed_by = $("#directed_by")
+        var collaboration = $("#collaboration")
+        var image = $("#inputImage").val();
+        if(title.val()==="" || short_description==="" || description==="" || directed_by==="" || collaboration==="") {
+            $("#alert-empty-field").removeClass('hidden');
+        } else{
+            $("form[id='store_edit_show']").submit();
+        }
+    });
+}
+
 function hideAlert_empty_field(){
     $(document).ready(function (){
         $("#alert-empty-field").addClass('hidden');

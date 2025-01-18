@@ -9,12 +9,26 @@
                             <a href="{{route('show')}}" class="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">Spettacoli</a>
                         </div>
                     </li>
+                    @if(isset($show_selected))
+                        <li>
+                            <div class="flex items-center">
+                                <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                                </svg>
+                                <a href="{{route('singleshow.show',['name' => $show_selected->title])}}" class="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">{{$show_selected->title}}</a>
+                            </div>
+                        </li>
+                    @endif
                     <li aria-current="page">
                         <div class="flex items-center">
                             <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
                             </svg>
+                            @if(isset($show_selected))
+                                <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">Modifica spettacolo</span>
+                            @else
                             <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">Aggiungi spettacolo</span>
+                            @endif
                         </div>
                     </li>
                 </ol>
@@ -31,16 +45,24 @@
 
 
                 <div class="py-4 xl:px-32 lg:px-12">
-
-                                <form action="{{route('show.store')}}" method="POST" id="store_show" enctype="multipart/form-data">
+                                @if(isset($show_selected))
+                                    <form action="{{route('show.update',['id' => $show_selected->id])}}" method="POST" id="store_edit_show" enctype="multipart/form-data">
+                                @else
+                                    <form action="{{route('show.store')}}" method="POST" id="store_show" enctype="multipart/form-data">
+                                @endif
                                     @csrf
                                     <div class="mt-4 border border-gray-300 p-4 rounded-lg">
                                         <h1 class="mb-2"> Inserisci dati spettacolo:</h1>
                                         <div class="lg:flex">
                                             <div class="lg:w-1/2">
                                                 <label class="block mb-2 text-xs font-cabritobold font-medium text-gray-900 dark:text-white" for="title">Titolo spettacolo</label>
+                                                @if(isset($show_selected))
+                                                    <input type="text" id="title" name="title" class="block w-full p-2.5 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 " placeholder="Inserisci titolo spettacolo" value="{{$show_selected->title}}">
+                                                @else
                                                 <input type="text" id="title" name="title" class="block w-full p-2.5 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 " placeholder="Inserisci titolo spettacolo">
+                                                @endif
                                             </div>
+                                            @if(!isset($show_selected))
                                             <div class="lg:w-1/2 lg:ml-4 max-lg:mt-4">
                                                     <label class="block mb-2 text-xs font-cabritobold font-medium text-gray-900 dark:text-white " for="inputImage">Inserisci immagine spettacolo</label>
                                                     <input
@@ -49,21 +71,28 @@
                                                         id="inputImage"
                                                         class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400">
                                             </div>
+                                            @endif
                                         </div>
 
 
                                         <div class="lg:grid lg:grid-cols-2 mt-8">
                                             <div class="mb-4">
 
-                                                    <label class="block mb-2 text-xs font-cabritobold font-medium text-gray-900 dark:text-white " for="directed_by">Diretto da</label>
-                                                    <input type="text" id="directed_by" name="directed_by" class="sm:text-xs block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Inserisci da chi è diretto lo spettacolo">
-
+                                                <label class="block mb-2 text-xs font-cabritobold font-medium text-gray-900 dark:text-white " for="directed_by">Diretto da</label>
+                                                @if(isset($show_selected))
+                                                    <input type="text" id="directed_by" name="directed_by" class="sm:text-xs block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Inserisci da chi è diretto lo spettacolo" value="{{$show_selected->directed_by}}">
+                                                @else
+                                                <input type="text" id="directed_by" name="directed_by" class="sm:text-xs block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Inserisci da chi è diretto lo spettacolo">
+                                                @endif
                                             </div>
 
                                             <div class="lg:ml-4 max-lg:mt-4">
                                                     <label class="block mb-2 text-xs font-cabritobold font-medium text-gray-900 dark:text-white " for="collaboration">Collaborazione</label>
+                                                @if(isset($show_selected))
+                                                    <input type="text" id="collaboration" name="collaboration" class="sm:text-xs block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Inserisci la collaborazione" value="{{$show_selected->collaboration}}">
+                                                @else
                                                     <input type="text" id="collaboration" name="collaboration" class="sm:text-xs block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Inserisci la collaborazione">
-
+                                                @endif
                                             </div>
 
 
@@ -71,14 +100,21 @@
 
                                             <div class="max-lg:mt-4 mb-4">
                                                     <label class="block mb-2 text-xs font-cabritobold font-medium text-gray-900 dark:text-white " for="short_description">Breve descrizione</label>
-                                                    <textarea id="short_description" name="short_description" rows="2" class="block p-2.5 w-full sm:text-xs text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Inserisci una breve descrizione (max 2 righe)"></textarea>
+                                                @if(isset($show_selected))
+                                                    <textarea id="short_description" name="short_description" rows="2" class="block p-2.5 w-full sm:text-xs text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Inserisci una breve descrizione (max 2 righe)">{{$show_selected->short_description}}</textarea>
+                                                @else
+                                                <textarea id="short_description" name="short_description" rows="2" class="block p-2.5 w-full sm:text-xs text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Inserisci una breve descrizione (max 2 righe)"></textarea>
+                                                @endif
                                             </div>
 
                                             <div class="max-lg:mt-4">
 
                                                     <label class="block mb-2 text-xs font-cabritobold font-medium text-gray-900 dark:text-white " for="description">Descrizione</label>
-                                                    <textarea id="description" name="description" rows="6" class="block p-2.5 w-full sm:text-xs text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Inserisci la descrizione completa"></textarea>
-
+                                                @if(isset($show_selected))
+                                                    <textarea id="description" name="description" rows="6" class="block p-2.5 w-full sm:text-xs text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Inserisci la descrizione completa">{{$show_selected->description}}</textarea>
+                                                @else
+                                                <textarea id="description" name="description" rows="6" class="block p-2.5 w-full sm:text-xs text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Inserisci la descrizione completa"></textarea>
+                                                @endif
                                             </div>
                                     </div>
 
@@ -137,8 +173,16 @@
 
                                 <div class="p-6">
                                     <div class="mt-6">
+                                        @if(isset($show_selected))
+                                            <button type="submit" class=" max-lg:w-full  text-white bg-blue-700 text-center hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium  text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" onclick="event.preventDefault(); checkEditShow();">Modifica</button>
+                                        @else
                                             <button type="submit" class=" max-lg:w-full  text-white bg-blue-700 text-center hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium  text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" onclick="event.preventDefault(); checkAddShow();">Aggiungi</button>
-                                            <a href="{{route('show')}}" class="inline-block max-lg:w-full text-center  text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium  text-sm px-5 py-2.5 mr-2 mb-2"> Annulla</a>
+                                        @endif
+                                        @if(isset($show_selected))
+                                            <a href="{{route('singleshow.show',['name' => $show_selected->title])}}" class="inline-block max-lg:w-full text-center  text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium  text-sm px-5 py-2.5 mr-2 mb-2"> Annulla</a>
+                                        @else
+                                        <a href="{{route('show')}}" class="inline-block max-lg:w-full text-center  text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium  text-sm px-5 py-2.5 mr-2 mb-2"> Annulla</a>
+                                        @endif
                                     </div>
                                 </div>
                                 </form>

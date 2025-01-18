@@ -61,4 +61,22 @@ class ShowController extends Controller
         return Redirect::route('show')->with('destroyedShow',true);
     }
 
+    public function editShow($id){
+        $dl = new DataLayer();
+        $show_selected = $dl->getShowById($id);
+        return view('addshow', compact('show_selected'));
+    }
+
+    public function updateShow($id, Request $request){
+        $dl = new DataLayer();
+        $show = $dl->getShowById($id);
+        $title = $request->input('title');
+        $short_description = $request->input('short_description');
+        $description = $request->input('description');
+        $directed_by = $request->input('directed_by');
+        $collaboration = $request->input('collaboration');
+        $dl->updateShow($show, $title, $short_description, $description, $directed_by, $collaboration);
+        return Redirect::route('singleshow.show', ['name' => $show->title]);
+    }
+
 }

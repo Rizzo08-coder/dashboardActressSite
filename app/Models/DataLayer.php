@@ -41,6 +41,24 @@ class DataLayer extends Model
         $show->delete();
     }
 
+    public function updateShow($show, $title, $short_description, $description, $directed_by, $collaboration){
+        $show->title = $title;
+        $show->short_description = $short_description;
+        $show->description = $description;
+        $show->directed_by = $directed_by;
+        $show->collaboration = $collaboration;
+        $show->save();
+    }
+
+    public function getFutureEventList()
+    {
+        //todo: not implemented yet
+    }
+
+    public function getPastEventList()
+    {
+        //todo: not implemented yet
+    }
 
 
 }
