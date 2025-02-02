@@ -25,7 +25,7 @@
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('event')" :active="request()->routeIs('event') || request()->routeIs('event.add')">
-                        Eventi
+                        Calendario
                     </x-nav-link>
                 </div>
 
@@ -88,7 +88,7 @@
                 Spettacoli
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('event')" :active="request()->routeIs('event') || request()->routeIs('event.add')">
-                Eventi
+                Calendario
             </x-responsive-nav-link>
         </div>
 

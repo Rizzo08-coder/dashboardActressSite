@@ -6,7 +6,7 @@
                 <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
                     <li>
                         <div class="flex items-center">
-                            <a href="{{route('event')}}" class="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">Eventi</a>
+                            <a href="{{route('event')}}" class="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">Calendario</a>
                         </div>
                     </li>
 
@@ -15,7 +15,7 @@
                             <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
                             </svg>
-                                <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">Aggiungi Evento</span>
+                                <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">Aggiungi Data</span>
                         </div>
                     </li>
                 </ol>
@@ -36,7 +36,7 @@
                                 <form action="{{route('event.store')}}" method="POST" id="store_event" enctype="multipart/form-data">
                                     @csrf
                                     <div class="mt-4 p-4 rounded-lg">
-                                        <h1 class="mb-2"> Inserisci dati evento:</h1>
+                                        <h1 class="mb-2"> Inserisci dati:</h1>
                                         <div class="mb-4">
                                             <div class="">
                                                 <label class="block mb-2 text-xs font-cabritobold font-medium text-gray-900 dark:text-white" for="show">Spettacolo</label>

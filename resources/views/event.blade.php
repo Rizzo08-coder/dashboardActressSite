@@ -7,7 +7,7 @@
                     <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
                         <li aria-current="page">
                             <div class="flex items-center">
-                                <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">Eventi</span>
+                                <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">Calendario</span>
                             </div>
                         </li>
                     </ol>
@@ -16,7 +16,7 @@
 
             <!-- Bottone "Aggiungi Spettacolo" -->
             <a href="{{route('event.add')}}" class="bg-green-700 text-white py-2 px-4 hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-700">
-                + Aggiungi Evento
+                + Aggiungi Data
             </a>
         </div>
     </x-slot>
